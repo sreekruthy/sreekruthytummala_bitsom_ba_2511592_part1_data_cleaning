@@ -101,8 +101,8 @@ This removed **20** exact copies without silently deleting any of the **24** con
 Percentage text was converted before validation. For example:
 
 ```text
-70% → 0.70
-85% → 0.85
+70% to 0.70
+85% to 0.85
 ```
 
 A blank discount was converted to zero only when quantity, unit price, source sales, cost, and source profit were numeric. The valid range was assumed to be **0%–50%, inclusive**.
@@ -205,22 +205,22 @@ Reconciliation:
 
 | Flag type | Count | Reason |
 |---|---|---|
-| Invalid — negative discount | 15 | `cleaned_discount < 0` |
-| Invalid — discount above 50% | 15 | `cleaned_discount > 0.5` |
-| Invalid — ship date before order date | 21 | `clean_ship_date < clean_order_date` |
-| Invalid — sales mismatch | 64 | `ABS(source sales − calculated_sales) > 0.05` |
-| Invalid — profit mismatch | 64 | `ABS(source profit − calculated_profit) > 0.05` |
-| Warning — missing region filled | 25 | `clean_region = Unknown` |
-| Warning — missing ship mode filled | 21 | `clean_ship_mode = Unknown` |
-| Warning — missing discount imputed to 0 | 18 | Raw discount blank; other sales fields valid |
-| Warning — cancelled order | 145 | `clean_order_status = Cancelled` |
-| Warning — returned order | 163 | `clean_order_status = Returned` |
-| Warning — failed payment | 69 | `clean_payment_status = Failed` |
-| Warning — refunded payment | 71 | `clean_payment_status = Refunded` |
-| Warning — pending payment | 86 | `clean_payment_status = Pending` |
-| Warning — conflicting duplicate flagged for review | 24 | Repeated order ID with more than one distinct full-row version |
+| Invalid - negative discount | 15 | `cleaned_discount < 0` |
+| Invalid - discount above 50% | 15 | `cleaned_discount > 0.5` |
+| Invalid - ship date before order date | 21 | `clean_ship_date < clean_order_date` |
+| Invalid - sales mismatch | 64 | `ABS(source sales − calculated_sales) > 0.05` |
+| Invalid - profit mismatch | 64 | `ABS(source profit − calculated_profit) > 0.05` |
+| Warning - missing region filled | 25 | `clean_region = Unknown` |
+| Warning - missing ship mode filled | 21 | `clean_ship_mode = Unknown` |
+| Warning - missing discount imputed to 0 | 18 | Raw discount blank; other sales fields valid |
+| Warning - cancelled order | 145 | `clean_order_status = Cancelled` |
+| Warning - returned order | 163 | `clean_order_status = Returned` |
+| Warning - failed payment | 69 | `clean_payment_status = Failed` |
+| Warning - refunded payment | 71 | `clean_payment_status = Refunded` |
+| Warning - pending payment | 86 | `clean_payment_status = Pending` |
+| Warning - conflicting duplicate flagged for review | 24 | Repeated order ID with more than one distinct full-row version |
 
-Issue categories overlap — one record can trigger multiple flags. The mutually exclusive `data_quality_flag` gives the correct reconciliation:
+Issue categories overlap - one record can trigger multiple flags. The mutually exclusive `data_quality_flag` gives the correct reconciliation:
 
 ```
 505 Clean + 305 Warning + 102 Invalid = 912 retained records
@@ -247,12 +247,3 @@ Issue categories overlap — one record can trigger multiple flags. The mutually
 ```text
 completed_sales_include = "Yes"
 ```
-
-Example regional sales formula:
-
-```text
-=SUMIFS('Data'!calculated_sales,'Data'!region,selected_region,'Data'!completed_sales_include,"Yes")
-```
-
-Segment margin is calculated as aggregate profit divided by aggregate sales, rather than an unweighted average of row-level percentages.
-
