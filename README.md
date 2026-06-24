@@ -175,10 +175,22 @@ The region and category/sub-category outputs are filtered to eligible completed 
 
 ## 10. Screenshots included
 
-- `screenshots/raw_data_preview.png`: original raw dataset before cleaning
-- `screenshots/cleaned_data_preview.png`: final cleaned dataset with calculated columns
-- `screenshots/pivot_summary_1.png`: major pivot summary
-- `screenshots/pivot_summary_2.png`: second major pivot summary
+### Raw dataset before cleaning
+
+![Raw dataset](screenshots/raw_data_preview.png)
+
+### Cleaned dataset with calculated columns
+
+![Cleaned dataset](screenshots/cleaned_data_preview.png)
+
+### Any major pivot summary
+
+![Pivot summary 1](screenshots/pivot_summary_1.png)
+
+### Another major pivot summary
+
+![Pivot summary 2](screenshots/pivot_summary_2.png)
+
 
 
 
